@@ -1,0 +1,64 @@
+ Hello, World!
+
+Topic objective: 
+In these text-based steps, 
+we will create a Django project and 
+a Django app that will display simple HTML.
+
+https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FSD101_WTS+2023_Q3/courseware/16383559f48c4ae4a69e9e9149914729/d5d0251c90ab4dc5b7fc81bb7ac368d2/?child=first
+
+Create Repo
+1. copy ci-full-template: https://github.com/Code-Institute-Org/ci-full-template
+
+2. In the main menu, click on Terminal > New Terminal.
+
+3. Type the following command in the terminal to install the Django Python package:
+pip3 install Django~=4.2.1
+Note: ~=4.2.1 installs any package version greater than or equal to 4.2.1 but less than 4.3
+
+4. Once the package is installed, add it to the requirements.txt file with the following command:
+pip3 freeze --local > requirements.txt
+
+5.  It's good practice to check what packages have been installed. 
+When you look in the requirements file, you can see that three packages were installed.
+
+6. Return to the terminal. In the terminal, create a Django project called my_project in the current directory.
+django-admin startproject my_project .
+
+NOTE: i got a warning after installing django so i had to Add the Scripts directory to my PATH:
+WARNING: The script django-admin.exe is installed in 'C:\Users\User123\AppData\Local\Packages\PythonSoftwareFoundation.Pyth  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+django-admin : Die Benennung "django-admin" wurde nicht als Name eines Cmdlet, einer Funktion, ...
+Add the Scripts directory to your PATH: Here's how you can do it in Windows:
+    Right-click on "This PC" or "My Computer" and select "Properties".
+    Click on "Advanced system settings".
+    In the System Properties window, click on the "Environment Variables" button.
+    In the Environment Variables window, under System Variables, find the "Path" variable and click Edit.
+    Add the path to the Scripts directory at the end of the list, separating each path with a semicolon (;).
+    Click OK on all windows to save the changes.
+
+7. Run Django Server:
+python3 manage.py runserver
+
+8. Creating a Django app:
+python3 manage.py startapp hello_world
+
+9.  In hello_world/views.py, below from django.shortcuts import render, type:
+from django.http import HttpResponse
+
+10. Below the # Create your views here. 
+comment, create the following Python function named index. 
+Inside the function, we are returning a simple HTTP response.
+
+def index(request):
+    return HttpResponse
+
+11.  Within parentheses after HttpResponse add the string "Hello, world!"
+
+12. In my_project/urls.py - Let's include the view we just created. 
+from hello_world import views as index_views
+
+13. Above the admin pattern in urlpatterns add:
+path('', index_views.index, name='index'),
+
+14. Add app to settings.py to connect the app to the project. 
+To connect the app you will need to scroll down through the my_project/settings.py file to find the INSTALLED_APPS list.
