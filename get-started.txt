@@ -42,3 +42,22 @@ IMPORTANT PROJECT FILES:
      It is used to create apps, run our project and perform some database operations.
 
 
+
+DEPLOYMENT PROCESS:
+1. Create Heroku App (Dashboard)
+2. Settings -> Config Vars :
+Add the KEY "DISABLE_COLLECTSTATIC" with the VALUE of "1"
+3. Install a production-ready webserver for Heroku.
+    pip3 install gunicorn~=20.1
+4. Add gunicorn==20.1.0 to the requirements.txt file
+    pip3 freeze --local > requirements.txt
+5. Create a file named "Procfile" at the root directory of the project (same directory as requirements.txt).
+6. In the Procfile, declare this is a web process followed by the command to execute your Django project.
+    web: gunicorn my_project.wsgi
+This assumes your project is named my_project.
+Note: gunicorn my_project.wsgi is the command heroku will use to start the server. 
+It works similarly to python3 manage.py runserver.
+7. Open the my_project/settings.py file and replace DEBUG=True with DEBUG=False.
+8. Also, in settings.py we need to append the Heroku hostname to the ALLOWED_HOSTS list, in addition to the local host we added in the last lesson.
+    ,'.herokuapp.com'
+9. You can now git add the files you have modified, git commit them and push them to GitHub. 
