@@ -3,6 +3,11 @@ https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FSD101_WTS+2023_
 
 INSTALL DJANGO:
 pip3 install Django~=4.2.1
+Check your installed Django Version:
+django-admin version
+
+Show installed packages in general:
+pip3 list
 
 ADD INSTALLED PACKAGES TO REQUIREMENTS.TXT
 pip3 freeze --local > requirements.txt
